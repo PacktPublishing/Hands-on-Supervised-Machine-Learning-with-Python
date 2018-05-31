@@ -51,4 +51,5 @@ setuptools.setup(name="packtml",
                  include_package_data=True,
                  install_requires=REQUIREMENTS,
                  package_data={"packtml": ["*"]},
+                 python_requires='>=3.5, <4',
                  version=VERSION)
