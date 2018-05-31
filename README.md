@@ -15,7 +15,7 @@ Published by Packt, Hands-on Supervised Machine Learning with Python
 
 These days machine learning is everywhere, and it’s here to stay. Understanding the core principles that drive how a machine “learns” is a critical skill for any would-be practitioner or consumer alike. This course will introduce you to supervised machine learning, guiding you through the implementation and nuances of many popular machine learning algorithms while facilitating a deep understanding along the way.
 
-In this course, we’ll cover parametric models such as linear and logistic regression, non-parametric methods such as decision trees and boosting, various clustering techniques, and we’ll wrap up with a brief foray into neural networks.
+In this course, we’ll cover parametric models such as linear and logistic regression, non-parametric methods such as decision trees & various clustering techniques, and we’ll wrap up with a brief foray into neural networks.
 
 This video course highlights clean coding techniques, object-oriented class design, and general best practices in machine learning
 
