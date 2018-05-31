@@ -1,0 +1,7 @@
+[run]
+source = packtml
+include = */packtml/*
+omit =
+    */packtml/setup.py
+    */packtml/utils/plotting.py
+    */setup.py
