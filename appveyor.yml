@@ -71,11 +71,9 @@ install:
   - pip install -r requirements.txt
   - pip install pytest
 
+build_script:
   # set up the package
   - python setup.py install
-
-# build_script:
-# No build_script required as it's handled in the install section.
 
 after_build:
   # Remove old or huge cache files to hopefully not exceed the 1GB cache limit.
