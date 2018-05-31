@@ -28,13 +28,14 @@ environment:
       PYTHON_VERSION: 3.5
       PYTHON_ARCH: 64
 
-    - PYTHON: C:\Miniconda36
-      PYTHON_VERSION: 3.6
-      PYTHON_ARCH: 32
-
-    - PYTHON: C:\Miniconda36-x64
-      PYTHON_VERSION: 3.6
-      PYTHON_ARCH: 64
+    # Currently failing due to Appveyor bugs?
+    # - PYTHON: C:\Miniconda36
+    #   PYTHON_VERSION: 3.6
+    #   PYTHON_ARCH: 32
+    #
+    # - PYTHON: C:\Miniconda36-x64
+    #   PYTHON_VERSION: 3.6
+    #   PYTHON_ARCH: 64
 
 init:
   - "ECHO \"%APPVEYOR_SCHEDULED_BUILD%\""
