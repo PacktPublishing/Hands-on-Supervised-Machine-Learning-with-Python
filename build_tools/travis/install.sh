@@ -35,7 +35,7 @@ conda update --yes conda
 conda create -n testenv --yes python=${PYTHON_VERSION}
 source activate testenv
 pip install -r requirements.txt
-pip install pytest pytest-cov
+pip install pytest pytest-cov coverage codecov
 
 # set up the package
 python setup.py install
