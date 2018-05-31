@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python.svg?branch=master)](https://travis-ci.org/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python)
+[![Build status](https://ci.appveyor.com/api/projects/status/181d16js2ao3vn5v/branch/master?svg=true)](https://ci.appveyor.com/project/tgsmith61591/hands-on-supervised-machine-learning-with-python/branch/master)
 [![codecov](https://codecov.io/gh/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python/branch/master/graph/badge.svg)](https://codecov.io/gh/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python)
-
 
 # Hands-on-Supervised-Machine-Learning-with-Python
 
