@@ -1,0 +1,29 @@
+language: python
+sudo: required
+
+cache:
+  apt: true
+  directories:
+  - $HOME/.cache/pip
+  - $HOME/.ccache
+
+before_install:
+  - source build_tools/travis/before_install.sh
+env:
+  global:
+    - TEST_DIR=/tmp/packtml
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      env: PYTHON_VERSION="3.5"
+
+    - os: linux
+      dist: trusty
+      env: PYTHON_VERSION="3.6"
+
+install: source build_tools/travis/install.sh
+before_script: bash build_tools/travis/before_script.sh
+script: bash build_tools/travis/test_script.sh
+after_success: bash build_tools/travis/after_success.sh

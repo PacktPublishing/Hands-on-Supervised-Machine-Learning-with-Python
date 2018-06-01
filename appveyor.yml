@@ -1,0 +1,95 @@
+# AppVeyor.com is a Continuous Integration service to build and run tests under
+# Windows. This .yml file is based on scikit-learn and statsmodels' Appveyor CI
+# setups, adapted for use with the Hands-on Supervised Learning repo
+
+# This image contains the most pre-installed software (including supposedly
+# MinGW and Miniconda?...)
+image:
+- Visual Studio 2015
+
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+
+environment:
+  global:
+    APPVEYOR_SAVE_CACHE_ON_ERROR: false
+    TEST_TIMEOUT: 1000
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script interpreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    # CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\build_tools\\appveyor\\run_with_env.cmd"
+
+  matrix:
+    - PYTHON: C:\Miniconda35
+      PYTHON_VERSION: 3.5
+      PYTHON_ARCH: 32
+
+    - PYTHON: C:\Miniconda35-x64
+      PYTHON_VERSION: 3.5
+      PYTHON_ARCH: 64
+
+    # Currently failing due to Appveyor bugs?
+    # - PYTHON: C:\Miniconda36
+    #   PYTHON_VERSION: 3.6
+    #   PYTHON_ARCH: 32
+    #
+    # - PYTHON: C:\Miniconda36-x64
+    #   PYTHON_VERSION: 3.6
+    #   PYTHON_ARCH: 64
+
+init:
+  - "ECHO \"%APPVEYOR_SCHEDULED_BUILD%\""
+
+  # If there is a newer build queued for the same PR, cancel this one.
+  # The AppVeyor 'rollout builds' option is supposed to serve the same
+  # purpose but it is problematic because it tends to cancel builds pushed
+  # directly to master instead of just PR builds (or the converse).
+  # credits: JuliaLang developers.
+  - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER -and $env:APPVEYOR_BUILD_NUMBER -ne ((Invoke-RestMethod `
+        https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/history?recordsNumber=50).builds | `
+        Where-Object pullRequestId -eq $env:APPVEYOR_PULL_REQUEST_NUMBER)[0].buildNumber) { `
+          Write-Host "There are newer queued builds for this pull request, skipping build."
+          Exit-AppveyorBuild
+        }
+  - ps: |
+      If (($env:SKIP_NOTAG -eq "true") -and ($env:APPVEYOR_REPO_TAG -ne "true")) {
+          Write-Host "Skipping build, not at a tag."
+          Exit-AppveyorBuild
+      }
+
+install:
+  - C:\cygwin\bin\du -hs "%LOCALAPPDATA%\pip\Cache"
+
+  # Prepend Miniconda to the PATH of this build (this cannot be
+  # done from inside the powershell script as it would require to restart
+  # the parent CMD process).
+  - SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYTHON%\Library\bin;%PATH%
+
+  # Setup the conda config
+  - conda config --set always_yes yes
+  - ps: conda create -n testenv --yes python=$env:PYTHON_VERSION
+  - activate testenv
+  - pip install -r requirements.txt
+  - pip install pytest
+
+build_script:
+  # set up the package
+  - python setup.py install
+
+after_build:
+  # Remove old or huge cache files to hopefully not exceed the 1GB cache limit.
+  #
+  # If the cache limit is reached, the cache will not be updated (of not even
+  # created in the first run). So this is a trade of between keeping the cache
+  # current and having a cache at all.
+  # NB: This is done only `on_success` since the cache in uploaded only on
+  # success anyway.
+  - C:\cygwin\bin\find "%LOCALAPPDATA%\pip" -type f -mtime +360 -delete
+  - C:\cygwin\bin\find "%LOCALAPPDATA%\pip" -type f -size +10M -delete
+  - C:\cygwin\bin\find "%LOCALAPPDATA%\pip" -empty -delete
+
+  # Show size of cache
+  - C:\cygwin\bin\du -hs "%LOCALAPPDATA%\pip\Cache"
+
+test_script:
+  - python -m pytest --showlocals --durations=20 --pyargs packtml
