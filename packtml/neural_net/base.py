@@ -12,6 +12,7 @@ __all__ = [
     'NeuralMixin'
 ]
 
+
 def tanh(X):
     """Hyperbolic tangent.
 
