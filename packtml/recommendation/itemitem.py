@@ -51,7 +51,9 @@ class ItemItemRecommender(BaseSimpleEstimator, RecommenderMixin):
 
         # save the hyper param for later use later
         self.k = k
+        self.similarity = self._compute_sim(R, k)
 
+    def _compute_sim(self, R, k):
         # compute the similarity between all the items. This calculates the
         # similarity between each ITEM
         sim = cosine_similarity(R.T)
@@ -66,7 +68,7 @@ class ItemItemRecommender(BaseSimpleEstimator, RecommenderMixin):
                                     not_top_k.shape[1])
             sim[row_indices, not_top_k.ravel()] = 0.
 
-        self.similarity = sim
+        return sim
 
     def recommend_for_user(self, R, user, n=10,
                            filter_previously_seen=False,

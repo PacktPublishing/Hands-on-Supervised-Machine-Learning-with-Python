@@ -80,24 +80,6 @@ class BaseCriterion(object):
         """
 
 
-class VarianceReduction(BaseCriterion):
-    """Compute the variance reduction after a split.
-
-    Variance reduction is a splitting criterion used by CART trees in the
-    context of regression. It examines the variance in a target before and
-    after a split to determine whether we've reduced the variability in the
-    target.
-    """
-    def compute_uncertainty(self, y):
-        """Compute the variance of a target."""
-        return np.var(y)
-
-    def __call__(self, target, mask, uncertainty):
-        left, right = target[mask], target[~mask]
-        return uncertainty - (self.compute_uncertainty(left) +
-                              self.compute_uncertainty(right))
-
-
 class InformationGain(BaseCriterion):
     """Compute the information gain after a split.
 
@@ -143,3 +125,21 @@ class InformationGain(BaseCriterion):
 
         crit = self.crit  # type: callable
         return uncertainty - p * crit(left) - (1 - p) * crit(right)
+
+
+class VarianceReduction(BaseCriterion):
+    """Compute the variance reduction after a split.
+
+    Variance reduction is a splitting criterion used by CART trees in the
+    context of regression. It examines the variance in a target before and
+    after a split to determine whether we've reduced the variability in the
+    target.
+    """
+    def compute_uncertainty(self, y):
+        """Compute the variance of a target."""
+        return np.var(y)
+
+    def __call__(self, target, mask, uncertainty):
+        left, right = target[mask], target[~mask]
+        return uncertainty - (self.compute_uncertainty(left) +
+                              self.compute_uncertainty(right))

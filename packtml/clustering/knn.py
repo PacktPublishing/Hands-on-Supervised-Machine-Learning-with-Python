@@ -80,7 +80,8 @@ class KNNClassifier(BaseSimpleEstimator):
         # Compute the pairwise distances between each observation in
         # the dataset and the training data. This can be relatively expensive
         # for very large datasets!!
-        dists = euclidean_distances(X, self.X)
+        train = self.X
+        dists = euclidean_distances(X, train)
 
         # Arg sort to find the shortest distance for each row. This sorts
         # elements in each row (independent of other rows) to determine the
@@ -93,7 +94,13 @@ class KNNClassifier(BaseSimpleEstimator):
         nearest = np.argsort(dists, axis=1)
 
         # We only care about the top K, really, so get sorted and then truncate
+        # I.e:
+        # array([[1, 2, 1],
+        #           ...
+        #        [0, 0, 0]])
         predicted_labels = self.y[nearest][:, :self.k]
 
         # We want the most common along the rows as the predictions
+        # I.e:
+        # array([1, ..., 0])
         return mode(predicted_labels, axis=-1)[0].ravel()

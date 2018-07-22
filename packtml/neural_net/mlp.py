@@ -87,7 +87,7 @@ class NeuralNetClassifier(BaseSimpleEstimator, NeuralMixin):
     optimized neural network code, look into TensorFlow, Keras or other
     libraries.
 
-    This implementation of a neural net uses the ReLu activation function
+    This implementation of a neural net uses the TanH activation function
     *only*, and does not allow early convergence. It will continue for
     ``n_iter``. There are many other parameters that would typically be
     tunable in a network, for instance dropout, regularization, learning
@@ -222,11 +222,19 @@ class NeuralNetClassifier(BaseSimpleEstimator, NeuralMixin):
     @staticmethod
     def _back_propagate(truth, probas, layer_results, weights,
                         biases, learning_rate, l2):
+        # Compute the gradient (derivative) of our loss function WRT our
+        # last layer of weights/biases, and back propagate the error back
+        # up the layers, adjusting the weights as we go.
+        #
+        # Or, expressed in the chain rule:
+        # dL/dW = (dL/dZ)(dZ/dW) ...
+
         # the probabilities are our first delta. Subtract 1 from the
         # TRUE labels' probabilities in the predictions
         n_samples = truth.shape[0]
 
         # subtract 1 from true idcs. initial deltas are: (y_hat - y)
+        # This computes d2 = Y - T
         probas[range(n_samples), truth] -= 1.
 
         # iterate back through the layers computing the deltas (derivatives)

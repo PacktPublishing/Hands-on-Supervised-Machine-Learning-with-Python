@@ -5,21 +5,26 @@ from __future__ import absolute_import
 from packtml.clustering import KNNClassifier
 from packtml.utils.plotting import add_decision_boundary_to_axis
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 from sklearn.datasets import load_iris
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
-import numpy as np
 import sys
 
 # #############################################################################
 # Create a classification sub-dataset using iris
 iris = load_iris()
-X = iris.data[:, :2]
+X = iris.data[:, :2]  # just use the first two dimensions
 y = iris.target
 
 # split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+
+# scale the data
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
 # #############################################################################
 # Fit a k-nearest neighbor model and get predictions
