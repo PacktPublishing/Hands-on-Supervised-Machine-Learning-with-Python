@@ -103,4 +103,4 @@ class KNNClassifier(BaseSimpleEstimator):
         # We want the most common along the rows as the predictions
         # I.e:
         # array([1, ..., 0])
-        return mode(predicted_labels, axis=-1)[0].ravel()
+        return mode(predicted_labels, axis=1)[0].ravel()

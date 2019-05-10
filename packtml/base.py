@@ -3,8 +3,7 @@
 from __future__ import absolute_import
 
 from abc import ABCMeta, abstractmethod
-
-from sklearn.externals import six
+import six
 
 __all__ = [
     'BaseSimpleEstimator'

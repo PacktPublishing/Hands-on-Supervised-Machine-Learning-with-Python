@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import
 
-from sklearn.externals import six
+import six
 from abc import ABCMeta, abstractmethod
 
 import numpy as np

@@ -70,7 +70,7 @@ class SimpleLinearRegression(BaseSimpleEstimator):
         # Let's compute the least squares on X wrt y
         # Least squares solves the equation `a x = b` by computing a
         # vector `x` that minimizes the Euclidean 2-norm `|| b - a x ||^2`.
-        theta, _, rank, singular_values = lstsq(X, y)
+        theta, _, rank, singular_values = lstsq(X, y, rcond=None)
 
         # finally, we compute the intercept values as the mean of the target
         # variable MINUS the inner product of the X_means and the coefficients
