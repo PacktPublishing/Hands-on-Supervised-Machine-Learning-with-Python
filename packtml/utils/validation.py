@@ -3,7 +3,6 @@
 from __future__ import absolute_import
 
 from sklearn.externals import six
-from sklearn.utils.validation import check_random_state
 from sklearn.model_selection import ShuffleSplit
 
 import numpy as np
