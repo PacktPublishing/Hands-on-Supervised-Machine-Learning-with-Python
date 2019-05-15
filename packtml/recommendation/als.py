@@ -7,8 +7,8 @@ from sklearn.utils.validation import check_random_state, check_array
 from numpy.linalg import solve
 import numpy as np
 
-from .base import RecommenderMixin
-from ..base import BaseSimpleEstimator
+from packtml.recommendation.base import RecommenderMixin
+from packtml.base import BaseSimpleEstimator
 
 __all__ = [
     'ALS'

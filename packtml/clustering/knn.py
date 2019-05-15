@@ -15,7 +15,7 @@ from sklearn.utils.multiclass import check_classification_targets
 from scipy.stats import mode
 import numpy as np
 
-from ..base import BaseSimpleEstimator
+from packtml.base import BaseSimpleEstimator
 
 __all__ = [
     'KNNClassifier'

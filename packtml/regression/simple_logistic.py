@@ -6,9 +6,9 @@ from sklearn.utils.validation import check_X_y, check_array
 
 import numpy as np
 
-from ..utils.extmath import log_likelihood, logistic_sigmoid
-from ..utils.validation import assert_is_binary
-from ..base import BaseSimpleEstimator
+from packtml.utils.extmath import log_likelihood, logistic_sigmoid
+from packtml.utils.validation import assert_is_binary
+from packtml.base import BaseSimpleEstimator
 
 __all__ = [
     'SimpleLogisticRegression'

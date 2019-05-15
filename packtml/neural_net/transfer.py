@@ -11,9 +11,9 @@ from __future__ import absolute_import
 
 import numpy as np
 
-from .base import NeuralMixin, tanh
-from ..base import BaseSimpleEstimator
-from .mlp import NeuralNetClassifier, _calculate_loss
+from packtml.neural_net.base import NeuralMixin, tanh
+from packtml.base import BaseSimpleEstimator
+from packtml.neural_net.mlp import NeuralNetClassifier, _calculate_loss
 
 __all__ = [
     'TransferLearningClassifier'

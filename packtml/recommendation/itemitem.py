@@ -7,8 +7,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 import numpy as np
 
-from .base import RecommenderMixin
-from ..base import BaseSimpleEstimator
+from packtml.recommendation.base import RecommenderMixin
+from packtml.base import BaseSimpleEstimator
 
 __all__ = [
     'ItemItemRecommender'

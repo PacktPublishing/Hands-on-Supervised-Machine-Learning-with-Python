@@ -22,8 +22,8 @@ from sklearn.base import ClassifierMixin, RegressorMixin, is_classifier
 
 import numpy as np
 
-from ..base import BaseSimpleEstimator
-from .metrics import InformationGain, VarianceReduction
+from packtml.base import BaseSimpleEstimator
+from packtml.decision_tree.metrics import InformationGain, VarianceReduction
 
 __all__ = [
     'CARTRegressor',
