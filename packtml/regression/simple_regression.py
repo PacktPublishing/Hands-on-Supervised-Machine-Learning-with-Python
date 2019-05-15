@@ -7,7 +7,7 @@ from sklearn.utils.validation import check_X_y, check_array
 import numpy as np
 from numpy.linalg import lstsq
 
-from ..base import BaseSimpleEstimator
+from packtml.base import BaseSimpleEstimator
 
 
 __all__ = [

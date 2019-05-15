@@ -14,8 +14,8 @@ from sklearn.utils.multiclass import check_classification_targets
 
 import numpy as np
 
-from ..base import BaseSimpleEstimator
-from .base import NeuralMixin, tanh
+from packtml.base import BaseSimpleEstimator
+from packtml.neural_net.base import NeuralMixin, tanh
 
 __all__ = [
     'NeuralNetClassifier'

@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from matplotlib.colors import ListedColormap
 from matplotlib import pyplot as plt
 
-from .validation import learning_curve
+from packtml.utils.validation import learning_curve
 
 import numpy as np
 
