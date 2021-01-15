@@ -1,8 +1,3 @@
-## $5 Tech Unlocked 2021!
-[Buy and download this product for only $5 on PacktPub.com](https://www.packtpub.com/)
------
-*The $5 campaign         runs from __December 15th 2020__ to __January 13th 2021.__*
-
 [![Build Status](https://travis-ci.org/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python.svg?branch=master)](https://travis-ci.org/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python)
 [![Build status](https://ci.appveyor.com/api/projects/status/181d16js2ao3vn5v/branch/master?svg=true)](https://ci.appveyor.com/project/tgsmith61591/hands-on-supervised-machine-learning-with-python/branch/master)
 [![codecov](https://codecov.io/gh/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python/branch/master/graph/badge.svg)](https://codecov.io/gh/tgsmith61591/Hands-on-Supervised-Machine-Learning-with-Python)
